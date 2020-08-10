@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import LoginForm from "./components/LoginForm";
+import RegistrationForm from "./components/RegistrationForm";
+import { Route, Switch } from "react-router-dom";
+import MessageBox from "./components/MessageBox";
+import MainMenu from "./components/MainMenu";
+import { useSelector } from "react-redux";
+import { selectToken } from "./store/user/selectors";
+import Dashboard from "./components/Dashboard";
+import Budget from "./components/Budget";
+import Weight from "./components/Weight";
+import Logs from "./components/Logs";
 
 function App() {
+  const token = useSelector(selectToken);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container">
+      <header>
+        <MainMenu />
+        <MessageBox />
       </header>
+      <content>
+        <div className="container">
+          {token ? (
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/logs" component={Logs} />
+              <Route path="/budget" component={Budget} />
+              <Route path="/weight" component={Weight} />
+            </Switch>
+          ) : (
+            <>
+              <Switch>
+                <Route path="/registration" component={RegistrationForm} />
+                <Route path="/" component={LoginForm} />
+              </Switch>
+            </>
+          )}
+        </div>
+      </content>
     </div>
   );
 }
