@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import format from "date-format";
 import { useDispatch, useSelector } from "react-redux";
-import { addWeight } from "../store/user/actions";
+import { addWeight, deleteWeightThunk } from "../store/user/actions";
 import { selectWeight } from "../store/user/selectors";
 import WeightChart from "./WeightChart";
 
@@ -18,6 +18,10 @@ export default function Weight() {
     weight: "",
     date: today,
   });
+
+  const dWeight = (id) => {
+    dispatch(deleteWeightThunk(id));
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,6 +74,13 @@ export default function Weight() {
               >
                 <span>{format.asString("yyyy/MM/dd", new Date(w.date))}</span>{" "}
                 <span>{w.weight} KG</span>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => dWeight(w._id)}
+                >
+                  Delete
+                </button>
               </li>
             ))}
           </ul>

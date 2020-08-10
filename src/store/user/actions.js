@@ -81,15 +81,15 @@ export const addWeight = (data) => {
       (w) => +new Date(w.date) === +new Date(data.weight.date)
     );
     if (update.length > 0) {
-      const payload = weight.map((w) => {
+      const payloadData = weight.map((w) => {
         if (+new Date(w.date) === +new Date(data.weight.date))
           w.weight = Number(data.weight.weight);
         return w;
       });
-      console.log("Payload from actions", payload);
+      const payload = { weight: payloadData };
       data.weight._id = update[0]._id;
       const sendDate = {
-        weight: { _id: [update[0]._id], weight: data.weight },
+        weight: { _id: [update[0]._id], ...data.weight },
       };
       try {
         const response = await axios({
@@ -105,6 +105,27 @@ export const addWeight = (data) => {
       }
     } else {
       dispatch(addUserData(data));
+    }
+  };
+};
+
+export const deleteWeightThunk = (id) => {
+  return async (dispatch, getState) => {
+    const weight = selectWeight(getState());
+    const token = selectToken(getState());
+    const filteredWeight = weight.filter((w) => w._id !== id);
+    const payload = { weight: filteredWeight };
+    try {
+      const response = await axios({
+        method: "delete",
+        data: { id },
+        url: "http://localhost:4000/api/user/weight",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch(updateFullState(payload));
+      dispatch(showMessageWithTimeout("success", response.data.message));
+    } catch (err) {
+      console.log(err);
     }
   };
 };
