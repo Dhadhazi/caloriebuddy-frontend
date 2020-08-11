@@ -30,6 +30,7 @@ export default function Weight() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     dispatch(addWeight({ weight: values }));
   };
 
@@ -56,9 +57,15 @@ export default function Weight() {
               value={values.date}
             />
           </div>
-          <button type="submit" className="btn btn-primary mb-2">
-            Add Weight
-          </button>
+          {values.weight > 0 ? (
+            <button type="submit" className="btn btn-primary mb-2">
+              Add Weight
+            </button>
+          ) : (
+            <button type="submit" className="btn btn-secondary mb-2" disabled>
+              Add Weight
+            </button>
+          )}
         </form>
       </div>
       <div className="row justify-content-center">

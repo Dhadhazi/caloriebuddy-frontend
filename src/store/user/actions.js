@@ -1,5 +1,10 @@
 import axios from "axios";
-import { selectToken, selectWeight } from "./selectors";
+import {
+  selectToken,
+  selectWeight,
+  selectConsumption,
+  selectActivity,
+} from "./selectors";
 import { showMessageWithTimeout } from "../appState/actions";
 
 export const loginUser = (data) => {
@@ -120,6 +125,30 @@ export const deleteWeightThunk = (id) => {
         method: "delete",
         data: { id },
         url: "http://localhost:4000/api/user/weight",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch(updateFullState(payload));
+      dispatch(showMessageWithTimeout("success", response.data.message));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const deleteLogItemThunk = (data) => {
+  return async (dispatch, getState) => {
+    const stateData =
+      data.category === "consumption"
+        ? selectConsumption(getState())
+        : selectActivity(getState());
+    const token = selectToken(getState());
+    const filteredStateDate = stateData.filter((d) => d._id !== data.id);
+    const payload = { [data.category]: filteredStateDate };
+    try {
+      const response = await axios({
+        method: "delete",
+        data: data,
+        url: "http://localhost:4000/api/user/add",
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(updateFullState(payload));
