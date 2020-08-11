@@ -19,8 +19,8 @@ export default function Weight() {
     date: today,
   });
 
-  const dWeight = (id) => {
-    dispatch(deleteWeightThunk(id));
+  const dWeight = (id, date) => {
+    dispatch(deleteWeightThunk(id, date));
   };
 
   const handleChange = (e) => {
@@ -84,7 +84,7 @@ export default function Weight() {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => dWeight(w._id)}
+                  onClick={() => dWeight(w._id, w.date)}
                 >
                   Delete
                 </button>

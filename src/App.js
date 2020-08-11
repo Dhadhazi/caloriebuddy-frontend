@@ -10,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 import Budget from "./components/Budget";
 import Weight from "./components/Weight";
 import Logs from "./components/Logs";
+import Settings from "./components/Settings";
 
 function App() {
   const token = useSelector(selectToken);
@@ -28,6 +29,7 @@ function App() {
               <Route path="/logs" component={Logs} />
               <Route path="/budget" component={Budget} />
               <Route path="/weight" component={Weight} />
+              <Route path="/settings" component={Settings} />
             </Switch>
           ) : (
             <>

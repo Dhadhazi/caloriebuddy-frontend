@@ -63,7 +63,6 @@ export const setBudgetThunk = (data) => {
 export const addUserData = (data) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());
-    dispatch(addDAta(data));
     try {
       const response = await axios({
         method: "post",
@@ -71,7 +70,8 @@ export const addUserData = (data) => {
         url: "http://localhost:4000/api/user/add",
         headers: { Authorization: `Bearer ${token}` },
       });
-      dispatch(showMessageWithTimeout("success", response.data.message));
+      data[Object.keys(data)[0]]._id = response.data;
+      dispatch(addDAta(data));
     } catch (err) {
       console.log(err);
     }
@@ -114,16 +114,18 @@ export const addWeight = (data) => {
   };
 };
 
-export const deleteWeightThunk = (id) => {
+export const deleteWeightThunk = (id, date) => {
   return async (dispatch, getState) => {
     const weight = selectWeight(getState());
     const token = selectToken(getState());
-    const filteredWeight = weight.filter((w) => w._id !== id);
+    const filteredWeight = weight.filter(
+      (w) => w._id !== id || w.date !== date
+    );
     const payload = { weight: filteredWeight };
     try {
       const response = await axios({
         method: "delete",
-        data: { id },
+        data: { id, date },
         url: "http://localhost:4000/api/user/weight",
         headers: { Authorization: `Bearer ${token}` },
       });

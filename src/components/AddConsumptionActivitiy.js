@@ -61,9 +61,19 @@ export default function AddConsumptionActivitiy({ type }) {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary col-lg-4">
-            Add
-          </button>
+          {Number(values.calories) > 0 ? (
+            <button type="submit" className="btn btn-primary col-lg-4">
+              Add
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="btn btn-secondary col-lg-4"
+              disabled
+            >
+              Add
+            </button>
+          )}
         </form>
       )}
     </div>
