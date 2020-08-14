@@ -1,3 +1,10 @@
-## Message Box
+# Calorie Buddy Frontend - MVP version
 
-All component can reach the redux message box from appState/actions. Two versions available, setMessage has to be closed manually while showMessageWithTimeout will close after 5 sec. Both need input of variant - Bootstrap color variation like primary, success etc. - as string and message as string
+## Functionality
+- A simple daily calorie tracker with 2 minimal extra features:
+  - Can define what % of the activites calories to add to the daily consumption budget
+  - Can define what % of the unsued daily calories to carry over to the next day
+  
+- Can add your weight daily, even future weights, no controll over day. One weight a day, if you add it again it just updates the previous value
+- Can add your own consumptions and activities, names are not required just a calorie value
+- Can reset your account data, or delete your account
