@@ -1,7 +1,7 @@
 const initialState = {
   token: "",
   activity: [],
-  budget: [],
+  budget: {},
   consumption: [],
   weight: [],
 };
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case "UPDATE_FULL_STATE":
       return { ...state, ...action.payload };
     case "SET_BUDGET":
-      return { ...state, ...action.payload };
+      return { ...state, budget: { ...state.budget, ...action.payload } };
     case "ADD_DATA": {
       const section = Object.keys(action.payload)[0];
       return {

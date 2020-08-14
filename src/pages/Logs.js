@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import format from "date-format";
-import AddConsumptionActivitiy from "./AddConsumptionActivitiy";
+import AddConsumptionActivitiy from "../components/AddConsumptionActivitiy";
 import { selectActivity, selectConsumption } from "../store/user/selectors";
 import { deleteLogItemThunk } from "../store/user/actions";
 
@@ -42,11 +42,11 @@ export default function Logs() {
           <div className="row">
             <div className="col-md-6">
               {" "}
-              <AddConsumptionActivitiy type="consumption" />
+              <AddConsumptionActivitiy type="consumption" date={true} />
             </div>
             <div className="col-md-6">
               {" "}
-              <AddConsumptionActivitiy type="activity" />
+              <AddConsumptionActivitiy type="activity" date={true} />
             </div>
           </div>
           <div className="row">

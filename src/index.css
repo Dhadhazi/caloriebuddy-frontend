@@ -15,7 +15,7 @@
 
 .line {
   fill: none;
-  stroke: #ffab00;
+  stroke: #a3a9ad;
   stroke-width: 3;
 }
 
@@ -23,10 +23,8 @@
   fill: none;
   pointer-events: all;
 }
-
-/* Style the dots by assigning a fill and stroke */
 .dot {
-  fill: #ffab00;
+  fill: #0169d9;
   stroke: #fff;
 }
 

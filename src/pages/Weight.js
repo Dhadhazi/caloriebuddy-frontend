@@ -3,7 +3,7 @@ import format from "date-format";
 import { useDispatch, useSelector } from "react-redux";
 import { addWeight, deleteWeightThunk } from "../store/user/actions";
 import { selectWeight } from "../store/user/selectors";
-import WeightChart from "./WeightChart";
+import WeightChart from "../components/WeightChart";
 
 export default function Weight() {
   const dispatch = useDispatch();

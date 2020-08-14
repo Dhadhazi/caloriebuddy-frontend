@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import "../styles/LoginForm.css";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import axios from "axios";
+import "../styles/LoginForm.css";
+
 import { showMessageWithTimeout } from "../store/appState/actions";
 
 export default function LoginForm() {
-  const [values, setValues] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [values, setValues] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;

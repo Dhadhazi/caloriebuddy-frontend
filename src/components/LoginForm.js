@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../styles/LoginForm.css";
-import axios from "axios";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+
+import "../styles/LoginForm.css";
+
+import autoLogin from "./AutoLogin";
 import { showMessageWithTimeout } from "../store/appState/actions";
 import { loginUser } from "../store/user/actions";
-import autoLogin from "./AutoLogin";
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+
   const [values, setValues] = useState({
     email: "",
     password: "",
     rememberme: false,
   });
-  const dispatch = useDispatch();
 
+  //If user has token, login with that
   const localToken = localStorage.getItem("token");
   if (localToken !== null) {
     autoLogin(localToken).then((res) => {
@@ -102,9 +106,6 @@ export default function LoginForm() {
                       Remember Me
                     </label>
                   </div>
-                  {/* <div className="custom-control mb-3">
-                    <Link to="#">Forgot your password?</Link>
-                  </div> */}
                   <button
                     className="btn btn-lg btn-primary btn-block text-uppercase"
                     type="submit"
@@ -115,21 +116,6 @@ export default function LoginForm() {
                     Not a member yer?{" "}
                     <Link to="registration">Register here!</Link>
                   </div>
-
-                  {/* <hr className="my-4" />
-                  <button
-                    className="btn btn-lg btn-google btn-block text-uppercase"
-                    type="submit"
-                  >
-                    <i className="fab fa-google mr-2"></i> Sign in with Google
-                  </button>
-                  <button
-                    className="btn btn-lg btn-facebook btn-block text-uppercase"
-                    type="submit"
-                  >
-                    <i className="fab fa-facebook-f mr-2"></i> Sign in with
-                    Facebook
-                  </button> */}
                 </form>
               </div>
             </div>

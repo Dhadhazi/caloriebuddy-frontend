@@ -6,11 +6,11 @@ import MessageBox from "./components/MessageBox";
 import MainMenu from "./components/MainMenu";
 import { useSelector } from "react-redux";
 import { selectToken } from "./store/user/selectors";
-import Dashboard from "./components/Dashboard";
-import Budget from "./components/Budget";
-import Weight from "./components/Weight";
-import Logs from "./components/Logs";
-import Settings from "./components/Settings";
+import Dashboard from "./pages/Dashboard";
+import Budget from "./pages/Budget";
+import Weight from "./pages/Weight";
+import Logs from "./pages/Logs";
+import Settings from "./pages/Settings";
 
 function App() {
   const token = useSelector(selectToken);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 import { setBudgetThunk } from "../store/user/actions";
 import { selectBudget } from "../store/user/selectors";
 
@@ -23,6 +24,8 @@ export default function Budget() {
   const handleSubmit = (event) => {
     event.preventDefault();
     values.total_calories = Number(values.total_calories);
+    values.rule_calorie_rollover = Number(values.rule_calorie_rollover);
+    values.rule_activity_add = Number(values.rule_activity_add);
     dispatch(setBudgetThunk({ budget: values }));
     history.push("/");
   };

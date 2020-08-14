@@ -10,6 +10,7 @@ export default function Settings() {
   const history = useHistory();
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+
   const [resetSure, setResetSure] = useState(false);
   const [deleteSure, setDeleteSure] = useState(false);
 

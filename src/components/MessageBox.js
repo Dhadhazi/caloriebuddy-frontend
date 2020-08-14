@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { selectMessage } from "../store/appState/selectors";
 import { clearMessage } from "../store/appState/actions";
 
 export default function MessageBox() {
   const message = useSelector(selectMessage);
   const dispatch = useDispatch();
+
   const showMessage = message !== null ? "show" : "";
   if (!showMessage) return null;
 

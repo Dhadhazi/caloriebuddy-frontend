@@ -2,13 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import format from "date-format";
-import AddConsumptionActivitiy from "./AddConsumptionActivitiy";
+import AddConsumptionActivitiy from "../components/AddConsumptionActivitiy";
 import {
   selectActivity,
   selectConsumption,
   selectBudget,
 } from "../store/user/selectors";
-import WeightChart from "./WeightChart";
+import WeightChart from "../components/WeightChart";
 
 export default function Dashboard() {
   let activities = useSelector(selectActivity);
@@ -38,11 +38,12 @@ export default function Dashboard() {
 
   const budget = useSelector(selectBudget);
 
-  const caloriesLeft = Math.floor(
-    budget.total_calories +
-      activitiesSum * (budget.rule_activity_add / 100) -
-      consumptionSum
-  );
+  const caloriesLeft =
+    Math.floor(
+      budget.total_calories +
+        activitiesSum * (budget.rule_activity_add / 100) -
+        consumptionSum
+    ) + budget.rollover_calories;
 
   return (
     <div className="row justify-content-center">
@@ -102,9 +103,6 @@ export default function Dashboard() {
               </button>
             </Link>
             <WeightChart />
-          </div>
-          <div className="col-md-6 text-center margin-top">
-            Daily calories chart
           </div>
         </div>
       </div>
