@@ -6,6 +6,7 @@ import {
   selectActivity,
 } from "./selectors";
 import { showMessageWithTimeout } from "../appState/actions";
+import { BACKEND_ADDRESS } from "../../constants";
 
 export const loginUser = (data) => {
   return {
@@ -50,7 +51,7 @@ export const setBudgetThunk = (data) => {
       const response = await axios({
         method: "patch",
         data: data,
-        url: "http://caloriebuddy-backend.herokuapp.com/api/user/budget",
+        url: `${BACKEND_ADDRESS}/api/user/budget`,
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(showMessageWithTimeout("success", response.data.message));
@@ -67,7 +68,7 @@ export const addUserData = (data) => {
       const response = await axios({
         method: "post",
         data: data,
-        url: "http://caloriebuddy-backend.herokuapp.com/api/user/add",
+        url: `${BACKEND_ADDRESS}/api/user/add`,
         headers: { Authorization: `Bearer ${token}` },
       });
       data[Object.keys(data)[0]]._id = response.data;
@@ -100,7 +101,7 @@ export const addWeight = (data) => {
         const response = await axios({
           method: "patch",
           data: sendDate,
-          url: "http://caloriebuddy-backend.herokuapp.com/api/user/weight",
+          url: `${BACKEND_ADDRESS}/api/user/weight`,
           headers: { Authorization: `Bearer ${token}` },
         });
         dispatch(updateFullState(payload));
@@ -126,7 +127,7 @@ export const deleteWeightThunk = (id, date) => {
       const response = await axios({
         method: "delete",
         data: { id, date },
-        url: "http://caloriebuddy-backend.herokuapp.com/api/user/weight",
+        url: `${BACKEND_ADDRESS}/api/user/weight`,
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(updateFullState(payload));
@@ -150,7 +151,7 @@ export const deleteLogItemThunk = (data) => {
       const response = await axios({
         method: "delete",
         data: data,
-        url: "http://caloriebuddy-backend.herokuapp.com/api/user/add",
+        url: `${BACKEND_ADDRESS}/api/user/add`,
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(updateFullState(payload));

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 
 import "../styles/LoginForm.css";
+import { BACKEND_ADDRESS } from "../constants";
 
 import autoLogin from "./AutoLogin";
 import { showMessageWithTimeout } from "../store/appState/actions";
@@ -42,17 +43,15 @@ export default function LoginForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("http://caloriebuddy-backend.herokuapp.com/api/login", values)
-      .then((res) => {
-        if (res.data.message) {
-          dispatch(showMessageWithTimeout("danger", res.data.message));
-        } else {
-          dispatch(showMessageWithTimeout("success", "Login Successful"));
-          if (values.rememberme) localStorage.setItem("token", res.data.token);
-          dispatch(loginUser(res.data));
-        }
-      });
+    axios.post(`${BACKEND_ADDRESS}/api/login`, values).then((res) => {
+      if (res.data.message) {
+        dispatch(showMessageWithTimeout("danger", res.data.message));
+      } else {
+        dispatch(showMessageWithTimeout("success", "Login Successful"));
+        if (values.rememberme) localStorage.setItem("token", res.data.token);
+        dispatch(loginUser(res.data));
+      }
+    });
   };
 
   return (

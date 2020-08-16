@@ -1,9 +1,10 @@
 import axios from "axios";
+import { BACKEND_ADDRESS } from "../constants";
 
 const autoLogin = async (localToken) => {
   const res = await axios({
     method: "get",
-    url: "http://caloriebuddy-backend.herokuapp.com/api/loginJwt",
+    url: `${BACKEND_ADDRESS}/api/loginJwt`,
     headers: { Authorization: `Bearer ${localToken}` },
   });
   if (res.data.message) {

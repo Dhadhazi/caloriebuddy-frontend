@@ -4,6 +4,7 @@ import { selectToken } from "../store/user/selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { showMessageWithTimeout } from "../store/appState/actions";
 import { logOut } from "../store/user/actions";
+import { BACKEND_ADDRESS } from "../constants";
 import axios from "axios";
 
 export default function Settings() {
@@ -18,7 +19,7 @@ export default function Settings() {
     try {
       const response = await axios({
         method: "put",
-        url: "http://caloriebuddy-backend.herokuapp.com/api/user/",
+        url: `${BACKEND_ADDRESS}/api/user/`,
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(logOut());
@@ -33,7 +34,7 @@ export default function Settings() {
     try {
       const response = await axios({
         method: "delete",
-        url: "http://caloriebuddy-backend.herokuapp.com/api/user/",
+        url: `${BACKEND_ADDRESS}/api/user/`,
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(logOut());

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import "../styles/LoginForm.css";
 
+import { BACKEND_ADDRESS } from "../constants";
 import { showMessageWithTimeout } from "../store/appState/actions";
 
 export default function LoginForm() {
@@ -19,19 +20,15 @@ export default function LoginForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("http://caloriebuddy-backend.herokuapp.com/api/user", values)
-      .then((res) => {
-        if (res.data.message) {
-          dispatch(showMessageWithTimeout("danger", res.data.message));
-          setValues({ email: "", password: "" });
-        } else {
-          dispatch(
-            showMessageWithTimeout("success", "Registration successful!")
-          );
-          history.push("/");
-        }
-      });
+    axios.post(`${BACKEND_ADDRESS}/api/user`, values).then((res) => {
+      if (res.data.message) {
+        dispatch(showMessageWithTimeout("danger", res.data.message));
+        setValues({ email: "", password: "" });
+      } else {
+        dispatch(showMessageWithTimeout("success", "Registration successful!"));
+        history.push("/");
+      }
+    });
   };
 
   return (
