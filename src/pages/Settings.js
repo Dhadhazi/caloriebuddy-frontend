@@ -18,7 +18,7 @@ export default function Settings() {
     try {
       const response = await axios({
         method: "put",
-        url: "http://localhost:4000/api/user/",
+        url: "http://caloriebuddy-backend.herokuapp.com/api/user/",
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(logOut());
@@ -33,7 +33,7 @@ export default function Settings() {
     try {
       const response = await axios({
         method: "delete",
-        url: "http://localhost:4000/api/user/",
+        url: "http://caloriebuddy-backend.herokuapp.com/api/user/",
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(logOut());

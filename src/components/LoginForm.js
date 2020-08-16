@@ -42,15 +42,17 @@ export default function LoginForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("http://localhost:4000/api/login", values).then((res) => {
-      if (res.data.message) {
-        dispatch(showMessageWithTimeout("danger", res.data.message));
-      } else {
-        dispatch(showMessageWithTimeout("success", "Login Successful"));
-        if (values.rememberme) localStorage.setItem("token", res.data.token);
-        dispatch(loginUser(res.data));
-      }
-    });
+    axios
+      .post("http://caloriebuddy-backend.herokuapp.com/api/login", values)
+      .then((res) => {
+        if (res.data.message) {
+          dispatch(showMessageWithTimeout("danger", res.data.message));
+        } else {
+          dispatch(showMessageWithTimeout("success", "Login Successful"));
+          if (values.rememberme) localStorage.setItem("token", res.data.token);
+          dispatch(loginUser(res.data));
+        }
+      });
   };
 
   return (

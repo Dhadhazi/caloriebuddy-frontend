@@ -50,7 +50,7 @@ export const setBudgetThunk = (data) => {
       const response = await axios({
         method: "patch",
         data: data,
-        url: "http://localhost:4000/api/user/budget",
+        url: "http://caloriebuddy-backend.herokuapp.com/api/user/budget",
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(showMessageWithTimeout("success", response.data.message));
@@ -67,7 +67,7 @@ export const addUserData = (data) => {
       const response = await axios({
         method: "post",
         data: data,
-        url: "http://localhost:4000/api/user/add",
+        url: "http://caloriebuddy-backend.herokuapp.com/api/user/add",
         headers: { Authorization: `Bearer ${token}` },
       });
       data[Object.keys(data)[0]]._id = response.data;
@@ -100,7 +100,7 @@ export const addWeight = (data) => {
         const response = await axios({
           method: "patch",
           data: sendDate,
-          url: "http://localhost:4000/api/user/weight",
+          url: "http://caloriebuddy-backend.herokuapp.com/api/user/weight",
           headers: { Authorization: `Bearer ${token}` },
         });
         dispatch(updateFullState(payload));
@@ -126,7 +126,7 @@ export const deleteWeightThunk = (id, date) => {
       const response = await axios({
         method: "delete",
         data: { id, date },
-        url: "http://localhost:4000/api/user/weight",
+        url: "http://caloriebuddy-backend.herokuapp.com/api/user/weight",
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(updateFullState(payload));
@@ -150,7 +150,7 @@ export const deleteLogItemThunk = (data) => {
       const response = await axios({
         method: "delete",
         data: data,
-        url: "http://localhost:4000/api/user/add",
+        url: "http://caloriebuddy-backend.herokuapp.com/api/user/add",
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(updateFullState(payload));

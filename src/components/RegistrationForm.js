@@ -19,15 +19,19 @@ export default function LoginForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("http://localhost:4000/api/user", values).then((res) => {
-      if (res.data.message) {
-        dispatch(showMessageWithTimeout("danger", res.data.message));
-        setValues({ email: "", password: "" });
-      } else {
-        dispatch(showMessageWithTimeout("success", "Registration successful!"));
-        history.push("/");
-      }
-    });
+    axios
+      .post("http://caloriebuddy-backend.herokuapp.com/api/user", values)
+      .then((res) => {
+        if (res.data.message) {
+          dispatch(showMessageWithTimeout("danger", res.data.message));
+          setValues({ email: "", password: "" });
+        } else {
+          dispatch(
+            showMessageWithTimeout("success", "Registration successful!")
+          );
+          history.push("/");
+        }
+      });
   };
 
   return (

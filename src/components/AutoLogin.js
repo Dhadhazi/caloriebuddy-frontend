@@ -3,7 +3,7 @@ import axios from "axios";
 const autoLogin = async (localToken) => {
   const res = await axios({
     method: "get",
-    url: "http://localhost:4000/api/loginJwt",
+    url: "http://caloriebuddy-backend.herokuapp.com/api/loginJwt",
     headers: { Authorization: `Bearer ${localToken}` },
   });
   if (res.data.message) {
