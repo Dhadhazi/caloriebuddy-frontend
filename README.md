@@ -2,8 +2,8 @@
 
 ## Functionality
 - A simple daily calorie tracker with 2 minimal extra features:
-  - Can define what % of the activities calories to add to the daily consumption budget
-  - Can define what % of the unsued daily calories to carry over to the next day
+  - Can define what % of the activities calories to add to the daily consumption budget
+  - Can define what % of the unsued daily calories to carry over to the next day
   
 - Can add your weight daily, even future weights, no control over day. One weight a day, if you add it again it just updates the previous value
 - Can add your own consumptions and activities, names are not required just a calorie value
